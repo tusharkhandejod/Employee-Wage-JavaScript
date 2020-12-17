@@ -1,5 +1,4 @@
-//UC12-Extending EmployeePayrollData class
-// Adding gender of the employee and starting date 
+//UC13- Employee name validation is added using regex pattern
 class EmployeePayrollData {
 
     //property
@@ -23,7 +22,9 @@ class EmployeePayrollData {
         return this._name;
     }
     set name(name) {
-        this._name = name;
+        let nameRegex = RegExp("^[A-Z]{1}[a-z]{3,}$");
+        if (nameRegex.test(name)) this._name = name;
+        else throw "Name is incorrect";
     }
 
     tostring() {
@@ -41,11 +42,18 @@ class EmployeePayrollData {
         );
     }
 }
-let employeePayrollData = new EmployeePayrollData(1000, "Tushar", 60000);
-console.log(employeePayrollData.tostring());
-employeePayrollData.name = "Yash";
-employeePayrollData.id = 1001;
-employeePayrollData.salary = 100000;
-console.log(employeePayrollData.tostring());
-let newEmployeePayrollData = new EmployeePayrollData(1003, "Apeksha", 60000, "F", new Date());
-console.log(newEmployeePayrollData.tostring());
+
+try {
+    let employeePayrollData = new EmployeePayrollData(1000, "Tushar", 60000);
+    console.log(employeePayrollData.tostring());
+    employeePayrollData.name = "Yash";
+    employeePayrollData.id = 1001;
+    employeePayrollData.salary = 100000;
+    console.log(employeePayrollData.tostring());
+    let newEmployeePayrollData = new EmployeePayrollData(1003, "Apeksha", 60000, "F", new Date());
+    console.log(newEmployeePayrollData.tostring());
+
+
+} catch (e) {
+    console.log(e);
+}
